@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: {
     template: "%s | Barz-POS",
-    default: "Barz-POS Dashboard",
+    default: "Barz-POS",
   },
   description: "Barz-Point of Sales",
 };

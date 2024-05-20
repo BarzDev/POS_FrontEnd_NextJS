@@ -13,7 +13,7 @@ export default async function Page() {
   const desserts = JSON.parse(fileContents);
 
   return (
-    <div>
+    <div className="">
       <DessertMenu desserts={desserts} />
     </div>
   );

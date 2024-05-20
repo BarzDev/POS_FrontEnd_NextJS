@@ -3,7 +3,7 @@ import { Card } from "../ui/card";
 
 export function BeverageMenu({ beverages }: any) {
   return (
-    <div className="flex flex-wrap gap-2 items-center justify-center  max-h-[96vh] border-2 overflow-y-scroll">
+    <div className="grid grid-cols-5 max-h-[96vh] overflow-auto">
       {beverages.map((beverage: any) => (
         <div
           key={beverage.id}

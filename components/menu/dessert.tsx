@@ -3,7 +3,7 @@ import { Card } from "../ui/card";
 
 export function DessertMenu({ desserts }: any) {
   return (
-    <div className="flex flex-wrap max-h-[96vh] border-2">
+    <div className="grid grid-cols-5 max-h-[96vh] ">
       {desserts.map((dessert: any) => (
         <div
           key={dessert.id}
