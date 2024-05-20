@@ -1,6 +1,14 @@
 import { Payment } from "@/components/payment";
 import { Sidebar } from "@/components/ui/sidebar";
-import { Menu } from "@/components/menu/counter";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Barz-POS",
+    default: "Barz-POS Dashboard",
+  },
+  description: "Barz-Point of Sales",
+};
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

@@ -79,7 +79,7 @@ const links = [
 export function Sidebar() {
   const pathname = usePathname();
   return (
-    <div className=" flex flex-col gap-2 bg-amber-500 h=[96vh]">
+    <div className=" flex flex-col gap-2 bg-amber-500 min-h-screen">
       {links.map((link) => {
         return (
           <Link
