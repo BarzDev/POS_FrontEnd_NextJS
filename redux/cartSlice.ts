@@ -6,8 +6,8 @@ interface CartState {
 
 interface CartItem {
   id: any;
-  // name: string;
-  // price: number;
+  name: string;
+  price: number;
   quantity: number;
 }
 
@@ -41,9 +41,12 @@ export const cartSlice = createSlice({
         }
       }
     },
+    clearCart: (state) => {
+      state.value = [];
+    },
   },
 });
 
-export const { addToCart, decreaseQuantity } = cartSlice.actions;
+export const { addToCart, decreaseQuantity, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
