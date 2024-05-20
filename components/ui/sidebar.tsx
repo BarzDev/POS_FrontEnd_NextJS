@@ -88,8 +88,7 @@ export function Sidebar() {
             className={clsx(
               "flex h-[48px]  grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-amber-100 hover:text-orange-600 md:flex-none md:justify-start md:p-2 md:px-3 border m-1",
               {
-                "bg-amber-600 text-white hover:bg-amber-600 hover:text-white":
-                  pathname === link.href,
+                "bg-amber-100 text-orange-600 ": pathname === link.href,
               }
             )}
           >

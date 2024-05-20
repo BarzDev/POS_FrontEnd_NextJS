@@ -1,4 +1,4 @@
-import { AddButton } from "@/components/ui/add";
+import { ActionButton } from "@/components/ui/actionButton";
 import fs from "fs/promises";
 import Image from "next/image";
 import path from "path";
@@ -24,7 +24,7 @@ export default async function Page() {
                   alt={beverage.title}
                 />
               </div>
-              <AddButton beverage={beverage} />
+              <ActionButton beverage={beverage} />
             </div>
           </li>
         ))}
