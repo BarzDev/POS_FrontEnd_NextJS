@@ -1,5 +1,7 @@
 import { Counter } from "@/components/menu/counter";
+import { AuthButton } from "@/components/ui/auth";
 import type { Metadata } from "next";
+
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,6 +15,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="h-screen w-screen flex justify-center items-center">
+      <AuthButton />
       <Link
         className="p-4 border-2 border-green-300 rounded bg-green-200 flex"
         href={"/pos"}

@@ -1,5 +1,6 @@
 "use client";
 import clsx from "clsx";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -92,14 +93,15 @@ const links = [
     href: "/pos/history",
     icon: timeIcon,
   },
-  {
-    name: "Logout",
-    href: "/",
-    icon: logoutIcon,
-  },
+  // {
+  //   name: "Logout",
+  //   href: "/",
+  //   icon: logoutIcon,
+  // },
 ];
 
 export function Sidebar() {
+  const { data: session } = useSession();
   const pathname = usePathname();
   return (
     <div className=" flex flex-col gap-2 bg-amber-500 min-h-screen">
@@ -120,6 +122,13 @@ export function Sidebar() {
           </Link>
         );
       })}
+      <button
+        onClick={() => signOut()}
+        className="flex h-[48px]  grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-amber-100 hover:text-orange-600 md:flex-none md:justify-start md:p-2 md:px-3 border m-1"
+      >
+        {logoutIcon}
+        <p className="hidden md:block"> Sign out</p>
+      </button>
     </div>
   );
 }
