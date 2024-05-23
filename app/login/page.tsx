@@ -1,5 +1,7 @@
 "use client";
 
+import { Modal } from "@/components/ui/modal";
+import { Loading } from "@/components/ui/loading"; // Import the Loading component
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,16 +10,22 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
+
     const result = await signIn("credentials", {
       redirect: false,
       username,
       password,
     });
+
+    setLoading(false);
 
     if (result?.error) {
       setError("Invalid username or password");
@@ -27,10 +35,35 @@ export default function Login() {
     }
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-center">Login</h1>
+          <button
+            onClick={() => setShowModal(true)}
+            className="bg-sky-500 hover:bg-sky-700 text-white font-bold text-lg rounded-full"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+              />
+            </svg>
+          </button>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -72,6 +105,9 @@ export default function Login() {
             Login
           </button>
         </form>
+        {showModal && <Modal onClose={closeModal} />}
+        {loading && <Loading />}{" "}
+        {/* Render the Loading component when loading */}
       </div>
     </div>
   );
