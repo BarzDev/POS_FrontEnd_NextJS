@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="h-screen w-screen flex justify-center items-center">
-      <AuthButton />
+      {/* <AuthButton /> */}
       <Link
         className="p-4 border-2 border-green-300 rounded bg-green-200 flex"
-        href={"/pos"}
+        href={"/pos/"}
       >
         Menuju ke P.O.S Dashboard
         <svg

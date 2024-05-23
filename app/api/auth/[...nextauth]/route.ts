@@ -26,7 +26,7 @@ const users: User[] = [
   },
 ];
 
-const authOptions = {
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -47,7 +47,7 @@ const authOptions = {
       },
     }),
   ],
-  secret: "123456",
+  secret: process.env.NEXT_PUBLIC_SECRET,
   callbacks: {
     async session({ session, token }: any) {
       if (token) {

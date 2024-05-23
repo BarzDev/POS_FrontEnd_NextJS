@@ -75,7 +75,7 @@ const logoutIcon = (
 const links = [
   {
     name: "Home",
-    href: "/pos",
+    href: "/pos/",
     icon: homeIcon,
   },
   {
@@ -93,11 +93,6 @@ const links = [
     href: "/pos/history",
     icon: timeIcon,
   },
-  // {
-  //   name: "Logout",
-  //   href: "/",
-  //   icon: logoutIcon,
-  // },
 ];
 
 export function Sidebar() {
