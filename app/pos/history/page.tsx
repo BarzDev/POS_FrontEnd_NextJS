@@ -7,7 +7,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div>
-      <p>HISTORY</p>
       <History />
     </div>
   );
