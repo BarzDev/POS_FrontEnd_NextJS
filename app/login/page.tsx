@@ -31,7 +31,7 @@ export default function Login() {
       setError("Invalid username or password");
     } else {
       setError(null);
-      router.push("/pos");
+      router.push("/pos/dashboard");
     }
   };
 

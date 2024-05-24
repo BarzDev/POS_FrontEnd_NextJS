@@ -74,8 +74,8 @@ const logoutIcon = (
 
 const links = [
   {
-    name: "Home",
-    href: "/pos/",
+    name: "Dashboard",
+    href: "/pos/dashboard",
     icon: homeIcon,
   },
   {
@@ -92,6 +92,7 @@ const links = [
     name: "History Transaction",
     href: "/pos/history",
     icon: timeIcon,
+    role: "admin",
   },
 ];
 
@@ -101,6 +102,9 @@ export function Sidebar() {
   return (
     <div className=" flex flex-col gap-2 bg-amber-500 min-h-screen">
       {links.map((link) => {
+        if (link.role && session?.user.role !== link.role) {
+          return null;
+        }
         return (
           <Link
             key={link.name}

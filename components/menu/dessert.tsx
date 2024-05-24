@@ -7,9 +7,11 @@ export function DessertMenu({ desserts }: any) {
       {desserts.map((dessert: any) => (
         <div
           key={dessert.id}
-          className="w-40 h-52 border flex flex-col items-center justify-around "
+          className="w-40 h-52 border flex flex-col items-center justify-around mt-4"
         >
-          <p className="font-sm">{dessert.name}</p>
+          <p className="font-sm text-center">
+            {dessert.name} [$.{dessert.price}]
+          </p>
           <Card item={dessert} />
           <ActionButton beverage={dessert} />
         </div>

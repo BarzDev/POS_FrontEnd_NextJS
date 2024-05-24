@@ -5,8 +5,11 @@ import Keypad from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { clearCart } from "@/redux/cartSlice";
+import { addTransaction } from "@/redux/historySlice";
 
 const KeypadComponent = () => {
+  const cart = useSelector((state: RootState) => state.cart);
+  const history = useSelector((state: RootState) => state.history);
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
   const dispatch = useDispatch();
 
@@ -42,13 +45,24 @@ const KeypadComponent = () => {
       return;
     }
     if (input < totalPrice) {
-      window.alert("Payment failed");
+      window.alert("Payment failed, Insufficient funds");
       return;
     } else if (input >= totalPrice) {
       const returnAmount = (input - totalPrice).toLocaleString();
       window.alert(`Payment Succes, Return Amount $ ${returnAmount}`);
     }
+
+    const time = new Date().toLocaleString();
+
+    const transaction = {
+      date: time.toLocaleString(),
+      items: cart.value,
+      totalPrice: totalPrice,
+    };
+
     setInput(0);
+    dispatch(addTransaction(transaction));
+    console.log(history);
     dispatch(clearCart());
   };
 

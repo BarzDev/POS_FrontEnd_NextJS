@@ -5,7 +5,7 @@ interface CartState {
   totalPrice: number;
 }
 
-interface CartItem {
+export interface CartItem {
   id: any;
   name: string;
   price: number;

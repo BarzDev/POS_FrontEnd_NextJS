@@ -1,5 +1,5 @@
 import { Counter } from "@/components/menu/counter";
-import { AuthButton } from "@/components/ui/auth";
+import { AuthButton } from "@/components/ui/authButton";
 import type { Metadata } from "next";
 
 import Link from "next/link";
@@ -18,7 +18,7 @@ export default function Home() {
       {/* <AuthButton /> */}
       <Link
         className="p-4 border-2 border-green-300 rounded bg-green-200 flex"
-        href={"/pos/"}
+        href={"/pos/dashboard"}
       >
         Menuju ke P.O.S Dashboard
         <svg

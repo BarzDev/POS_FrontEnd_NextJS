@@ -20,19 +20,29 @@ export function Modal({ onClose }: ModalProps): JSX.Element {
           <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div className="sm:flex sm:items-start">
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3
-                  className="text-lg leading-6 font-medium text-gray-900"
+                <p
+                  className="text-lg leading-6 font-bold text-gray-900"
                   id="modal-headline"
                 >
                   Login Help
-                </h3>
+                </p>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Username: admin, Password: 123
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Username: admin, Password: 123
-                  </p>
+                  <div className="flex items-center">
+                    <p className="text-sm font-bold text-gray-800">
+                      ADMIN ROLE ➡{" "}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Username: admin, Password: admin
+                    </p>
+                  </div>
+                  <div className="flex items-center">
+                    <p className="text-sm font-bold text-gray-800">
+                      USER ROLE ➡{" "}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Username: user, Password: user
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

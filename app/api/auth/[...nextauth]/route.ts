@@ -1,30 +1,6 @@
+import { users } from "@/app/data/user";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-interface User {
-  id: string;
-  name: string;
-  password: string;
-  email: string;
-  role: string;
-}
-
-const users: User[] = [
-  {
-    id: "1",
-    name: "admin",
-    password: "123",
-    email: "admin@example.com",
-    role: "admin",
-  },
-  {
-    id: "2",
-    name: "user",
-    password: "123",
-    email: "user@example.com",
-    role: "user",
-  },
-];
 
 export const authOptions = {
   providers: [

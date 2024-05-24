@@ -7,9 +7,11 @@ export function BeverageMenu({ beverages }: any) {
       {beverages.map((beverage: any) => (
         <div
           key={beverage.id}
-          className="w-40 h-52 border flex flex-col items-center justify-around "
+          className="w-40 h-52 border flex flex-col items-center justify-around mt-4"
         >
-          <p className="font-sm text-center">{beverage.name}</p>
+          <p className="font-sm text-center">
+            {beverage.name} [$.{beverage.price}]
+          </p>
           <Card item={beverage} />
           <ActionButton beverage={beverage} />
         </div>
