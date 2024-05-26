@@ -10,21 +10,38 @@ export default function Dashboard() {
       <p className="text-2xl font-bold">Hello, {session?.user?.name}</p>
       <div className="border w-full p-3">
         <p className="text-lg font-bold">
-          Role Accesibilty {session?.user.role}
+          Role accesibilty {session?.user.role}
         </p>
         <div className="px-5">
           {session?.user.role === "admin" ? (
             <ul className="list-disc">
-              <li>Dashboard Menu</li>
-              <li>Beverage Menu</li>
-              <li>Dessert Menu</li>
-              <li>History Menu</li>
+              <li className="font-bold">Dashboard Menu</li>
+              <li className="list-none">Info About the User</li>
+              <li className="font-bold">Transcation Menu</li>
+              <li className="list-none">1. Beverages Menu</li>
+              <li className="list-none">
+                List all of beverages list to input in POS system
+              </li>
+              <li className="list-none">2. Dessert Menu</li>
+              <li className="list-none">
+                List all of dessert list to input in POS system
+              </li>
+              <li className="font-bold">History Menu</li>
+              <li className="list-none">Menu for view transaction history </li>
             </ul>
           ) : (
             <ul className="list-disc">
-              <li>Dashboard Menu</li>
-              <li>Beverage Menu</li>
-              <li>Dessert Menu</li>
+              <li className="font-bold">Dashboard Menu</li>
+              <li className="list-none">Info About the User</li>
+              <li className="font-bold">Transcation Menu</li>
+              <li className="list-none">1. Beverages Menu</li>
+              <li className="list-none">
+                List all of beverages list to input in POS system
+              </li>
+              <li className="list-none">2. Dessert Menu</li>
+              <li className="list-none">
+                List all of dessert list to input in POS system
+              </li>
             </ul>
           )}
         </div>

@@ -5,15 +5,19 @@ import Keypad from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { clearCart } from "@/redux/cartSlice";
-import { addTransaction } from "@/redux/historySlice";
+
+import { apiMongo } from "@/app/api/mongo";
 
 const KeypadComponent = () => {
   const cart = useSelector((state: RootState) => state.cart);
-  const history = useSelector((state: RootState) => state.history);
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
   const dispatch = useDispatch();
 
   const [input, setInput] = useState<number>(0);
+
+  const fetchPost = async (transaction: any) => {
+    await apiMongo.post("/transaction", transaction);
+  };
 
   const handleInput = (key: string) => {
     const inputLength = input.toString().length;
@@ -61,8 +65,11 @@ const KeypadComponent = () => {
     };
 
     setInput(0);
-    dispatch(addTransaction(transaction));
-    console.log(history);
+    try {
+      fetchPost(transaction);
+    } catch (error) {
+      throw error;
+    }
     dispatch(clearCart());
   };
 
@@ -70,7 +77,7 @@ const KeypadComponent = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="pt-2 font-bold text-xl">Amount</h1>
+      {/* <h1 className="pt-2 font-bold text-xl">Amount</h1> */}
       <div style={styles.display} className="border-4 border-teal-600 p-1">
         $. {formattedInput}
       </div>

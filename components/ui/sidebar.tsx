@@ -89,7 +89,7 @@ const links = [
     icon: cubeIcon,
   },
   {
-    name: "History Transaction",
+    name: "History",
     href: "/pos/history",
     icon: timeIcon,
     role: "admin",

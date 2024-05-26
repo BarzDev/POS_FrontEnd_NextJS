@@ -1,15 +1,26 @@
 "use client";
-import { useState } from "react";
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Loading } from "../ui/loading";
+import { apiMongo } from "@/app/api/mongo";
 
 const History = () => {
-  const transactions = useSelector(
-    (state: RootState) => state.history.transactions
-  );
+  const [transactions, setTransaction] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  console.log(transactions);
+  const fetchHistory = async () => {
+    try {
+      setLoading(true);
+      const response = await apiMongo.get("/transaction");
+      // console.log(response);
+      const data = response.data;
+      setTransaction(data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching transaction history:", error);
+      setLoading(false);
+    }
+  };
 
   const [selectedTransaction, setSelectedTransaction] = useState<any>(null);
 
@@ -20,6 +31,10 @@ const History = () => {
   const handleCloseDetails = () => {
     setSelectedTransaction(null);
   };
+
+  useEffect(() => {
+    fetchHistory();
+  }, []);
 
   return (
     <div className="container mx-auto py-8">
@@ -51,30 +66,32 @@ const History = () => {
             <h2 className="text-lg font-semibold mb-4">
               Date: {selectedTransaction.date}
             </h2>
-
-            {selectedTransaction.items.map((item: any, index: any) => (
-              <div
-                key={index}
-                className="flex gap-3 items-center justify-between"
-              >
-                <div className="mask mask-squircle w-10 h-10 bg-white p-1 relative hidden md:block border">
-                  <Image
-                    src={item.img[0].sm}
-                    fill
-                    style={{ objectFit: "contain" }}
-                    alt={item.title}
-                  />
+            <div className="max-h-64 overflow-auto">
+              {selectedTransaction.items.map((item: any, index: any) => (
+                <div
+                  key={index}
+                  className="flex gap-3 items-center justify-between"
+                >
+                  <div className="mask mask-squircle w-10 h-10 bg-white p-1 relative hidden md:block border">
+                    <Image
+                      src={item.img[0].sm}
+                      fill
+                      style={{ objectFit: "contain" }}
+                      alt={item.title}
+                    />
+                  </div>
+                  <p className="mb-2 text-left bg-gray-200 w-96">{item.name}</p>
+                  <p className="mb-2">X {item.quantity}</p>
                 </div>
-                <p className="mb-2">{item.name}</p>
-                <p className="mb-2">X {item.quantity}</p>
-              </div>
-            ))}
-            <p className="mb-4 text-right font-bold py-2">
+              ))}
+            </div>
+
+            <p className="m-2 text-right font-bold py-2">
               Total Price: ${selectedTransaction.totalPrice}
             </p>
 
             <button
-              className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4"
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg "
               onClick={handleCloseDetails}
             >
               Close
@@ -82,6 +99,8 @@ const History = () => {
           </div>
         </div>
       )}
+
+      {loading && <Loading height="50vh" width="60vw" />}
     </div>
   );
 };

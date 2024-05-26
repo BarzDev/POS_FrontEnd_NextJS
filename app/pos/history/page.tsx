@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 export default function Page() {
   return (
-    <div>
+    <div className="max-h-[96vh] overflow-auto">
       <History />
     </div>
   );

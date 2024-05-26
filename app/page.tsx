@@ -1,5 +1,3 @@
-import { Counter } from "@/components/menu/counter";
-import { AuthButton } from "@/components/ui/authButton";
 import type { Metadata } from "next";
 
 import Link from "next/link";
