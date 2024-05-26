@@ -2,7 +2,19 @@ import { users } from "@/app/data/user";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = {
+interface AuthOptions {
+  providers: any[];
+  secret: string | undefined;
+  callbacks: {
+    session({ session, token }: any): Promise<any>;
+    jwt({ token, user }: any): Promise<any>;
+  };
+  pages: {
+    signIn: string;
+  };
+}
+
+const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
